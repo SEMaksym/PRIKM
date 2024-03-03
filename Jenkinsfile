@@ -22,6 +22,9 @@ pipeline {
         
         stage('Deploy nginx/custom'){
             steps{
+                sh "docker stop \$(docker ps -q) || true"
+                sh "docker container prune --force"
+                sh "docker image prune --force"
                 sh "docker run -d -p 80:80 nginx/custom:latest"
             } 
         } 
