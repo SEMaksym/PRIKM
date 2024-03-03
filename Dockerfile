@@ -1,2 +1,3 @@
 FROM nginx:latest
-COPY ./Site/. /usr/share/nginx/html/index.html
+RUN rm -rf /usr/share/nginx/html/index.html
+COPY ./Site/. /usr/share/nginx/html/
