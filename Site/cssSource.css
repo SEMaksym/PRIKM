@@ -1,0 +1,13 @@
+#Head{
+	display: flex;
+	flex-direction: row;
+    align-items: center;
+	height:auto;
+	width:auto;
+	background: linear-gradient(to top left,white 50%, blue);
+	border-radius:20px;
+}
+#HeadImage{
+	height:auto;
+	width:auto;
+}
