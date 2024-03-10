@@ -4,28 +4,34 @@ pipeline {
     stages {
         stage('Start') {
             steps {
-                echo 'Lab_1: nginx/custom'
+                echo 'Lab_2: nginx/custom'
             } 
         }
         
-        stage('Build nginx/custom') {
+        stage('Auto Image Build') {
             steps {
-                sh 'docker build -t nginx/custom:latest .'
+                sh "docker build -t prikm:latest ." 
+                sh "docker tag prikm semaksym/prikm:latest" 
+                sh "docker tag prikm semaksym/prikm:$BUILD_NUMBER" 
             } 
         }
         
-        stage('Test nginx/custom') {
+        stage('Push to registry') {
             steps {
-                echo 'Pass'
-            } 
+                withDockerRegistry([ credentialsId: "dckr_pat_IL84-3vVXaUg6_N_L6-6tO8LV6Q", url: "" ])
+                {
+                    sh "docker push semaksym/prikm:latest"
+                    sh "docker push semaksym/prikm:$BUILD_NUMBER"
+                }
+            }
         }
         
-        stage('Deploy nginx/custom'){
+        stage('Auto deploy image'){
             steps{
                 sh "docker stop \$(docker ps -q) || true"
                 sh "docker container prune --force"
                 sh "docker image prune --force"
-                sh "docker run -d -p 80:80 nginx/custom:latest"
+                sh "docker run -d -p 80:80 semaksym/prikm"
             } 
         } 
     } 
