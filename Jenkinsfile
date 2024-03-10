@@ -19,7 +19,7 @@ pipeline {
         stage('Push to registry') {
             steps {
                 echo 'Start pushing'
-                withDockerRegistry([ credentialsId: "dckr_pat_IL84-3vVXaUg6_N_L6-6tO8LV6Q", url: "" ])
+                withDockerRegistry([ credentialsId: "dockerhub_ID", url: "" ])
                 {
                     echo 'access granted'
                     sh "docker push semaksym/prikm:latest"
