@@ -1,6 +1,12 @@
 pipeline {
     agent any
-    
+    properties {
+	    mqttNotification{
+		    brokerUrl('tcp://test.mosquitto.org')
+			topic('labs/build')
+			message('${BUILD_RESULT}')
+		}
+	}
     stages {
         stage('Start') {
             steps {
