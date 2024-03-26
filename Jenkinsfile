@@ -20,6 +20,7 @@ pipeline {
         stage('Push to registry') {
             steps {
                 echo 'Start pushing'
+		error("Build failed because of this and that..")
                 withDockerRegistry([ credentialsId: "dockerhub_ID", url: "" ])
                 {
                     echo 'access granted'
