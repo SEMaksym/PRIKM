@@ -6,7 +6,6 @@ pipeline {
         stage('Start') {
             steps {
                 echo 'Lab_2: nginx/custom'
-		mqttNotification
             } 
         }
         
