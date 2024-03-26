@@ -29,7 +29,7 @@ pipeline {
             } 
         } 
         post always{ 
-             { 
+             
                 sh 'mosquitto_pub -d -h test.mosquitto.org -t "labs/build" -m $currentBuild.currentResult'
             }
         }
