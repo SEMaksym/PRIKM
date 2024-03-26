@@ -28,5 +28,10 @@ pipeline {
                 sh "docker run -d -p 80:80 nginx/custom:latest"
             } 
         } 
+        post always{ 
+             { 
+                sh 'mosquitto_pub -d -h test.mosquitto.org -t "labs/build" -m $currentBuild.currentResult'
+            }
+        }
     } 
 }
