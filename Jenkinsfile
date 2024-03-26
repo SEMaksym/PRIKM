@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    options {
+    mqttNotification {
 	   brokerUrl('tcp://test.mosquitto.org')
 	   topic('labs/build')
 	   message('${BUILD_RESULT}')
