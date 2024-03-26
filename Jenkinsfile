@@ -39,11 +39,8 @@ pipeline {
             } 
         } 
     } 
-    post { 
-        always { 
-          mqttNotification(brokerUrl :'tcp://test.mosquitto.org',
-          topic : 'labs/build',
-          message : 'hi')
-        }
+    post always { 
+	    sh 'mosquitto_pub -d -h test.mosquitto.org -t "labs/build" -m $currentBuild.currentResult'
     }
+
 }
