@@ -6,9 +6,9 @@ pipeline {
         stage('Start') {
             steps {
                 echo 'Lab_2: nginx/custom'
-				mqttNotification brokerUrl :'tcp://test.mosquitto.org',
-				  topic : 'labs/build',
-				  message : 'hi'
+		mqttNotification brokerUrl :'tcp://test.mosquitto.org',
+		topic : 'labs/build',
+		message : 'hi'
             } 
         }
         
